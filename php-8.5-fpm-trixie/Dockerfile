@@ -1,5 +1,5 @@
 # Trixie (Debian 13)
-FROM php:8.5-rc-fpm-trixie
+FROM php:8.5-fpm-trixie
 
 RUN set -eux; \
 	apt-get update; \
