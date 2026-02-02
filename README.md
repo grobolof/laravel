@@ -1,8 +1,10 @@
-<p align="center"><a href="https://symfony.com" target="_blank">
-    <img src="logo.svg" alt="">
-</a></p>
+[//]: # (<p align="center"><a href="https://symfony.com" target="_blank">)
 
-# Symfony
+[//]: # (    <img src="logo.svg" alt="">)
+
+[//]: # (</a></p>)
+
+# Laravel
 
 ✊ Образ для быстрого прототипирования актуальной версии [Symfony][1] под соответствующую версию PHP.
 
