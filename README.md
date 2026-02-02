@@ -6,7 +6,7 @@
 
 # Laravel
 
-✊ Образ для быстрого прототипирования актуальной версии [Symfony][1] под соответствующую версию PHP.
+✊ Образ для быстрого прототипирования актуальной версии [Laravel][1] под соответствующую версию PHP.
 
 🐳 Образ настроен в [Docker Hub][2] и готов к использованию.
 
@@ -24,7 +24,8 @@
 2. **Dockerfile** — в Dockerfile устанавливаются все необходимые пакеты и расширения для PHP. Предустановлены все
    пакеты, которые используются в большинстве приложений.
 3. **docker-entrypoint.sh** — скрипт выполняется при запуске контейнера. Он содержит логику по установке и настройке
-   `Symfony` для работы из коробки. В процессе выполнения скачивается и устанавливается актуальная версия `Symfony` (если еще не установлена) и настраиваются все инструменты для работы.
+   `Laravel` для работы из коробки. В процессе выполнения скачивается и устанавливается актуальная версия `Laravel` (
+   если еще не установлена) и настраиваются все инструменты для работы.
 
 ## 🚀 Быстрый старт
 
@@ -35,9 +36,9 @@
 | APP_PATH            | Путь от корня до проекта внутри контейнера                             | ✅         |
 | SERVER_NAME         | Хост вашего приложения                                                 | ✅         |
 | PHP_IDE_CONFIG      | Спец. переменная для Xdebug (без этой переменной работать не будет)    | ❌         |
-| DB_USER             | Имя пользователя для базы данных (используется для СУБД и Doctrine)    | ❌         |
-| DB_PASSWORD         | Пароль пользователя для базы данных (используется для СУБД и Doctrine) | ❌         |
-| DB_DATABASE         | Название базы данных (используется для СУБД и Doctrine)                | ❌         |
+| DB_USER             | Имя пользователя для базы данных (используется для СУБД и Eloquent)    | ❌         |
+| DB_PASSWORD         | Пароль пользователя для базы данных (используется для СУБД и Eloquent) | ❌         |
+| DB_DATABASE         | Название базы данных (используется для СУБД и Eloquent)                | ❌         |
 
 👇 Пример `.env` файла:
 
@@ -60,7 +61,7 @@ DB_DATABASE=postgres
 services:
 
   application:
-    image: armhaina/symfony:php-8.5-fpm-trixie
+    image: armhaina/laravel:php-8.5-fpm-trixie
     working_dir: ${APP_PATH}
     env_file: .env
     environment:
@@ -93,7 +94,8 @@ docker compose up -d --build --remove-orphans
 В логах контейнера `application` вам будет доступен процесс создания проекта. Завершением сборки можно считать появление
 фразы: `[УСПЕХ] Запускаем supervisord` на зеленом фоне (в логах контейнера `application`).
 
-😎 Если сборка проекта успешно завершена, то можете перейти на страницу `http://localhost` или `http://SERVER_NAME` (заменить **SERVER_NAME** на хост из `.env` файла). Вы должны увидеть приветственную страницу `Symfony`.
+😎 Если сборка проекта успешно завершена, то можете перейти на страницу `http://localhost` или `http://SERVER_NAME` (
+заменить **SERVER_NAME** на хост из `.env` файла). Вы должны увидеть приветственную страницу `Laravel`.
 
 ## 🛠️ Доп. настройки
 
@@ -103,15 +105,20 @@ docker compose up -d --build --remove-orphans
 
 ### 🗄️ Подключить БД
 
-⚠️ Если используете БД для своего приложения, то вам необходимо в файле `.env` самого Symfony (если использовали
-`docker-compose.yml` из примера, то файл `.env` будет в папке `app`) и заменить значение переменной `DATABASE_URL` на
-собственные доступы БД.
+⚠️ Если используете БД для своего приложения, то вам необходимо в файле `.env` самого Laravel (если использовали
+`docker-compose.yml` из примера, то файл `.env` будет в папке `app`) и заменить значение переменных: `DB_CONNECTION`,
+`DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` на собственные доступы БД.
 
-👇 Пример ниже при условии, что использовали `postgres` из `docker-compose.yml`. Переменные необходимо заменить значениями
-из файла `.env`:
+👇 Пример ниже при условии, что использовали `postgres` из `docker-compose.yml`. Переменные необходимо заменить
+значениями из файла `.env`:
 
 ```
-DATABASE_URL="postgresql://$DB_USER:$DB_PASSWORD@database:5432/$DB_DATABASE?serverVersion=18&charset=utf8"
+DB_CONNECTION=pgsql
+DB_HOST=database
+DB_PORT=5432
+DB_DATABASE=$DB_DATABASE
+DB_USERNAME=$DB_USER
+DB_PASSWORD=$DB_PASSWORD
 ```
 
 ---
@@ -144,6 +151,6 @@ DATABASE_URL="postgresql://$DB_USER:$DB_PASSWORD@database:5432/$DB_DATABASE?serv
 
 Полный текст лицензии доступен в файле [LICENSE](LICENSE)
 
-[1]: https://symfony.com
+[1]: https://laravel.com
 
-[2]: https://hub.docker.com/repository/docker/armhaina/symfony
+[2]: https://hub.docker.com/repository/docker/armhaina/laravel
