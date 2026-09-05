@@ -1,12 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Готовит окружение Laravel и запускает Nginx + PHP-FPM.
+set -e
 
-source /tmp/scr/step-0-text-decoration.sh
-source /tmp/scr/step-1-variables-declaring.sh
-source /tmp/scr/step-2-composer-install.sh
-source /tmp/scr/step-3-variables-change.sh
-source /tmp/scr/step-4-nginx-conf-def-disable.sh
-source /tmp/scr/step-5-laravel-install.sh
-source /tmp/scr/step-6-composer-packages-install.sh
-source /tmp/scr/step-7-laravel-cache.sh
-source /tmp/scr/step-8-laravel-migrations.sh
-source /tmp/scr/step-final-supervisor-run.sh
+source /tmp/scr/1-text-decoration.sh
+log info "Готовлю контейнер Laravel…"
+
+source /tmp/scr/2-variables-declaring.sh
+source /tmp/scr/3-composer-install.sh
+source /tmp/scr/4-variables-change.sh
+source /tmp/scr/5-nginx-conf-def-disable.sh
+source /tmp/scr/6-laravel-install.sh
+source /tmp/scr/7-composer-install-packages.sh
+source /tmp/scr/8-cron-configure.sh
+source /tmp/scr/9-mailpit-configure.sh
+source /tmp/scr/10-laravel-cache.sh
+source /tmp/scr/11-laravel-migrations.sh
+source /tmp/scr/12-final-supervisor-run.sh
