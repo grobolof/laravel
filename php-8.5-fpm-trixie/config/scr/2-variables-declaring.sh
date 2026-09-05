@@ -21,14 +21,13 @@ require_01() {
 
 require APP_PATH
 require APP_HOST
+require DB_CONNECTION
 require DB_HOST
+require DB_PORT
 require DB_DATABASE
 require DB_USERNAME
 require DB_PASSWORD
 require_01 LARAVEL_CRON_ENABLED
-
-DB_CONNECTION=${DB_CONNECTION:-pgsql}
-DB_PORT=${DB_PORT:-5432}
 
 case $DB_CONNECTION in
   pgsql|mysql|mariadb|sqlite) ;;

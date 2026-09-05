@@ -14,9 +14,9 @@
 | :------------------ | :------------------ | :-------- |
 | <a id="APP_HOST"></a>[APP_HOST](#APP_HOST) | Хост вашего проекта (хост необходимо добавить в файл hosts вашей системы, пример: `127.0.0.1   laravel.docker.local`) | ✅ |
 | <a id="APP_PATH"></a>[APP_PATH](#APP_PATH) | Путь от корня до проекта внутри контейнера | ✅ |
-| <a id="DB_CONNECTION"></a>[DB_CONNECTION](#DB_CONNECTION) | Драйвер Eloquent. Для этого примера — `pgsql` | ❌ |
+| <a id="DB_CONNECTION"></a>[DB_CONNECTION](#DB_CONNECTION) | Драйвер Eloquent. Для этого примера — `pgsql`. Допустимо: `pgsql`, `mysql`, `mariadb`, `sqlite` | ✅ |
 | <a id="DB_HOST"></a>[DB_HOST](#DB_HOST) | Хост базы данных (хостом БД является название контейнера СУБД из docker-compose.yml; используется для СУБД и Eloquent) | ✅ |
-| <a id="DB_PORT"></a>[DB_PORT](#DB_PORT) | Порт базы данных. Для PostgreSQL — `5432` | ❌ |
+| <a id="DB_PORT"></a>[DB_PORT](#DB_PORT) | Порт базы данных. Для PostgreSQL — `5432` | ✅ |
 | <a id="DB_DATABASE"></a>[DB_DATABASE](#DB_DATABASE) | Название базы данных (используется для СУБД и Eloquent) | ✅ |
 | <a id="DB_USERNAME"></a>[DB_USERNAME](#DB_USERNAME) | Имя пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
 | <a id="DB_PASSWORD"></a>[DB_PASSWORD](#DB_PASSWORD) | Пароль пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
