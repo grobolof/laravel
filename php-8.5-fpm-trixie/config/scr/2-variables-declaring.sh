@@ -23,7 +23,7 @@ require APP_PATH
 require APP_HOST
 require DB_HOST
 require DB_DATABASE
-require DB_USER
+require DB_USERNAME
 require DB_PASSWORD
 require_01 LARAVEL_CRON_ENABLED
 

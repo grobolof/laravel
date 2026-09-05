@@ -18,7 +18,7 @@
 | <a id="DB_HOST"></a>[DB_HOST](#DB_HOST) | Хост базы данных (хостом БД является название контейнера СУБД из docker-compose.yml; используется для СУБД и Eloquent) | ✅ |
 | <a id="DB_PORT"></a>[DB_PORT](#DB_PORT) | Порт базы данных. Для PostgreSQL — `5432` | ❌ |
 | <a id="DB_DATABASE"></a>[DB_DATABASE](#DB_DATABASE) | Название базы данных (используется для СУБД и Eloquent) | ✅ |
-| <a id="DB_USER"></a>[DB_USER](#DB_USER) | Имя пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
+| <a id="DB_USERNAME"></a>[DB_USERNAME](#DB_USERNAME) | Имя пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
 | <a id="DB_PASSWORD"></a>[DB_PASSWORD](#DB_PASSWORD) | Пароль пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
 | <a id="LARAVEL_CRON_ENABLED"></a>[LARAVEL_CRON_ENABLED](#LARAVEL_CRON_ENABLED) | Вкл/выкл CRON (1 - вкл.; раз в минуту): `php artisan schedule:run`. Допустимы только `0` или `1` | ✅ |
 | <a id="MAILPIT_ENABLED"></a>[MAILPIT_ENABLED](#MAILPIT_ENABLED) | Вкл/выкл mailpit (1 - вкл.). Если задана — только `0` или `1`; любое другое значение — ошибка при старте контейнера | ❌ |
@@ -40,7 +40,7 @@
 
 ## Доступы СУБД для Laravel через переменные окружения
 
-👇 При первом создании проекта значения уже подставляются в `app/.env`. Если создаёте проект вручную, замените в `app/.env` переменные ([DB_CONNECTION](#DB_CONNECTION), [DB_HOST](#DB_HOST), [DB_PORT](#DB_PORT), [DB_DATABASE](#DB_DATABASE), [DB_USER](#DB_USER), [DB_PASSWORD](#DB_PASSWORD)).
+👇 При первом создании проекта значения уже подставляются в `app/.env`. Если создаёте проект вручную, замените в `app/.env` переменные ([DB_CONNECTION](#DB_CONNECTION), [DB_HOST](#DB_HOST), [DB_PORT](#DB_PORT), [DB_DATABASE](#DB_DATABASE), [DB_USERNAME](#DB_USERNAME), [DB_PASSWORD](#DB_PASSWORD)).
 
 ```
 DB_CONNECTION=pgsql

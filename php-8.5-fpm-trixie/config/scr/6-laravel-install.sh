@@ -24,7 +24,7 @@ else
   set_env DB_HOST "$DB_HOST"
   set_env DB_PORT "$DB_PORT"
   set_env DB_DATABASE "$DB_DATABASE"
-  set_env DB_USERNAME "$DB_USER"
+  set_env DB_USERNAME "$DB_USERNAME"
   set_env DB_PASSWORD "$DB_PASSWORD"
 
   chmod -R ug+rwx "$APP_PATH/storage" "$APP_PATH/bootstrap/cache"

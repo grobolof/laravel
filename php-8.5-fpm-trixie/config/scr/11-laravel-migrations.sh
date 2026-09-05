@@ -2,12 +2,22 @@
 # Накатывает миграции Laravel, когда доступны artisan и база.
 # Если СУБД ещё не готова — шаг не роняет контейнер, только предупреждает.
 
+clear_application_cache() {
+  # После migrate таблица cache уже есть — можно сбросить application cache.
+  if php artisan cache:clear --no-interaction; then
+    log success "Application cache очищен"
+  else
+    log warning "Application cache не очищен"
+  fi
+}
+
 if [[ ! -f "$APP_PATH/artisan" ]]; then
   log warning "artisan не найден — миграции пропускаю"
 elif [[ $DB_CONNECTION == sqlite ]]; then
   log info "Накатываю миграции Laravel (sqlite)…"
   if php artisan migrate --force --no-interaction; then
     log success "Миграции выполнены"
+    clear_application_cache
   else
     log warning "Миграции не выполнены — проверьте подключение к БД"
   fi
@@ -26,6 +36,7 @@ else
     done
     if [[ $migrated == 1 ]]; then
       log success "Миграции выполнены"
+      clear_application_cache
     else
       log warning "Миграции не выполнены — проверьте подключение к БД"
     fi
