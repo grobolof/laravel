@@ -1,7 +1,7 @@
 # Быстрый старт 🚀
 
 - ⬇️ Скачайте [example-app](.) (переименуйте раздел под ваш проект).
-- 📄 Скопируйте `.env.example` в `.env` (см. [таблицу с переменными](#env-vars)). В файле [docker-compose.yml](docker-compose.yml) представлены два контейнера `database`: postgres (рабочий) и mariadb (закомментирован). Можете ничего не менять — тогда СУБД будет PostgreSQL. Чтобы использовать MariaDB, закомментируйте postgres, раскомментируйте mariadb и в `.env` укажите `DB_CONNECTION=mysql`, `DB_PORT=3306`.
+- 📄 Скопируйте `.env.example` в `.env` (см. [таблицу с переменными](#env-vars)). СУБД проекта — PostgreSQL.
 - ⚡ Запустите проект выполнив команду из корня проекта: `make up`.
 - 📊 В логах контейнера `application` вам будет доступен процесс создания проекта.
 - ✅ Завершением сборки можно считать появление строки `✅ КОНТЕЙНЕР ГОТОВ — ЗАПУСКАЮ NGINX И PHP-FPM`.
@@ -14,13 +14,12 @@
 | :------------------ | :------------------ | :-------- |
 | <a id="APP_HOST"></a>[APP_HOST](#APP_HOST) | Хост вашего проекта (хост необходимо добавить в файл hosts вашей системы, пример: `127.0.0.1   laravel.docker.local`) | ✅ |
 | <a id="APP_PATH"></a>[APP_PATH](#APP_PATH) | Путь от корня до проекта внутри контейнера | ✅ |
-| <a id="DB_CONNECTION"></a>[DB_CONNECTION](#DB_CONNECTION) | Драйвер Eloquent: `pgsql` (по умолчанию), `mysql`, `mariadb`, `sqlite`. Любое другое значение — ошибка при старте контейнера | ❌ |
+| <a id="DB_CONNECTION"></a>[DB_CONNECTION](#DB_CONNECTION) | Драйвер Eloquent. Для этого примера — `pgsql` | ❌ |
 | <a id="DB_HOST"></a>[DB_HOST](#DB_HOST) | Хост базы данных (хостом БД является название контейнера СУБД из docker-compose.yml; используется для СУБД и Eloquent) | ✅ |
-| <a id="DB_PORT"></a>[DB_PORT](#DB_PORT) | Порт базы данных. По умолчанию `5432` (PostgreSQL). Для MariaDB/MySQL укажите `3306` | ❌ |
+| <a id="DB_PORT"></a>[DB_PORT](#DB_PORT) | Порт базы данных. Для PostgreSQL — `5432` | ❌ |
 | <a id="DB_DATABASE"></a>[DB_DATABASE](#DB_DATABASE) | Название базы данных (используется для СУБД и Eloquent) | ✅ |
 | <a id="DB_USER"></a>[DB_USER](#DB_USER) | Имя пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
 | <a id="DB_PASSWORD"></a>[DB_PASSWORD](#DB_PASSWORD) | Пароль пользователя для базы данных (используется для СУБД и Eloquent) | ✅ |
-| <a id="DB_ROOT_PASSWORD"></a>[DB_ROOT_PASSWORD](#DB_ROOT_PASSWORD) | Секретный пароль пользователя root (нужен только если СУБД — MariaDB) | ❌ |
 | <a id="LARAVEL_CRON_ENABLED"></a>[LARAVEL_CRON_ENABLED](#LARAVEL_CRON_ENABLED) | Вкл/выкл CRON (1 - вкл.; раз в минуту): `php artisan schedule:run`. Допустимы только `0` или `1` | ✅ |
 | <a id="MAILPIT_ENABLED"></a>[MAILPIT_ENABLED](#MAILPIT_ENABLED) | Вкл/выкл mailpit (1 - вкл.). Если задана — только `0` или `1`; любое другое значение — ошибка при старте контейнера | ❌ |
 | <a id="MAILPIT_HOST"></a>[MAILPIT_HOST](#MAILPIT_HOST) | Хост mailpit. Обязательна, если [`MAILPIT_ENABLED`](#MAILPIT_ENABLED)=1 | ❌ |
@@ -126,16 +125,4 @@ docker exec -i $(basename $(pwd))-database-1 sh -c 'psql -U "$POSTGRES_USER" -d 
 
 ```bash
 docker exec $(basename $(pwd))-database-1 sh -c 'pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB"' > ./docker/postgres/db.sql
-```
-
-### Загрузить БД в контейнер (mariadb)
-
-```bash
-docker exec -i $(basename $(pwd))-database-1 sh -c 'mariadb -u root --password="$MARIADB_ROOT_PASSWORD" laravel' < ./docker/mariadb/db.sql
-```
-
-### Выгрузить БД из контейнера (mariadb)
-
-```bash
-docker exec $(basename $(pwd))-database-1 sh -c 'exec mariadb-dump --all-databases -uroot -p"$MARIADB_ROOT_PASSWORD"' > ./docker/mariadb/db.sql
 ```

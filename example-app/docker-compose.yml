@@ -26,18 +26,6 @@ services:
     volumes:
       - ./docker/postgres/db.sql:/docker-entrypoint-initdb.d/db.sql
 
-  # database:
-  #   image: mariadb
-  #   environment:
-  #     MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-  #     MARIADB_DATABASE: ${DB_DATABASE}
-  #     MARIADB_USER: ${DB_USER}
-  #     MARIADB_PASSWORD: ${DB_PASSWORD}
-  #   ports:
-  #     - "3306:3306"
-  #   volumes:
-  #     - ./docker/mariadb/db.sql:/docker-entrypoint-initdb.d/db.sql
-
   mailpit:
     image: axllent/mailpit
     hostname: mailpit
