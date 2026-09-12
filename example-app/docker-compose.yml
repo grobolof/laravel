@@ -11,7 +11,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./app:${APP_PATH}
+      # Корень репозитория (docker-compose.yml, .env, Laravel), не подкаталог app/
+      - ./:${APP_PATH}
     depends_on:
       - database
 
