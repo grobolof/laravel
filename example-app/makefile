@@ -16,6 +16,10 @@ down:
 cache-clear:
 	docker compose exec -it application php artisan optimize:clear
 
+# Сгенерировать APP_KEY — ключ шифрования сессий, cookie и прочих данных:
+key-generate:
+	docker compose exec -it application php artisan key:generate
+
 # КОМАНДЫ ДОСТУПНЫ ПРИ УСЛОВИИ ЧТО ПРОЕКТ LARAVEL УЖЕ СОЗДАН:
 
 ## Создать файл миграции:
